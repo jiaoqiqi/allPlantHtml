@@ -1,6 +1,3 @@
-/**
- * Created by Administrator on 2015/12/19.
- */
 var stars = {
     Mercury: {
         dia: 4878, //直径(km)(/200 换算成半径再缩放)

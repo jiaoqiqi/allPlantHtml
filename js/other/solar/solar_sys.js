@@ -1,7 +1,3 @@
-/**
- * Created by hn on 2015/12/18.
- */
-
 // 星球名字
 var sun,mercury,venus,earth,moon,mars,jupiter,saturn,uranus,neptune,comet;
 // 星球公转object3D

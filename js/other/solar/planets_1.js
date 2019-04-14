@@ -1,7 +1,3 @@
-/**
- * Created by Administrator on 2015/12/21.
- */
-
 function planet(dia,sd,pd,ad,rea,roa,rep,rop,ref){
     this.dia=dia;
     this.sd=sd;

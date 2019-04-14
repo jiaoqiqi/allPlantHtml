@@ -1,7 +1,3 @@
-/**
- * Created by Administrator on 2015/12/20.
- */
-
 //保留两位小数
 //功能：将浮点数四舍五入，取小数点后2位
     function toDecimal(x) {
