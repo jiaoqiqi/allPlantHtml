@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>hn_demo three.js 实现太阳系</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel=stylesheet href="css/base.css"/>
+</head>
+<body>
+
+<script src="js/Three.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/Stats.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/THREEx.KeyboardState.js"></script>
+<script src="js/THREEx.FullScreen.js"></script>
+<script src="js/THREEx.WindowResize.js"></script>
+<script src="js/SubdivisionModifier.js"></script>
+<!--业务js-->
+<script src="js/other/solar/init.js"></script>
+<script src="js/other/solar/planets.js"></script>
+<script src="js/other/solar/solar_sys.js"></script>
+
+<script src="js/other/solar/data.js"></script>
+
+<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+
+
+
+
+<script>
+
+     start();
+
+    //启动Three.js
+    function start() {
+        initThree();
+
+        initData();
+        //添加星空
+        scene.add(createSolarSky(20000, 64));
+        //画太阳系
+        drawSolarSystem();
+
+        animate();
+    }
+
+    //循环渲染
+    function animate(){
+        render();
+        update();
+    }
+
+    function update(){
+//        updateSunFire();
+
+        if ( keyboard.pressed("z") ) {
+            // do something
+        }
+        controls.update();
+        stats.update();
+    }
+
+    function render() {
+        //更新天体的运动状态
+        updatePlanetsMove();
+
+        requestAnimationFrame(animate);
+        renderer.render( scene, camera );
+    }
+
+</script>
+
+</body>
+</html>
+
