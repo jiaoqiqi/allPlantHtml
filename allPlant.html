@@ -30,44 +30,79 @@
 
 <script>
 
-     start();
+  start();
 
-    //启动Three.js
-    function start() {
-        initThree();
+  //启动Three.js
+  function start() {
+    initThree();
 
-        initData();
-        //添加星空
-        scene.add(createSolarSky(20000, 64));
-        //画太阳系
-        drawSolarSystem();
+    initData();
+    //添加星空
+    scene.add(createSolarSky(20000, 64));
+    //画太阳系
+    drawSolarSystem();
 
-        animate();
-    }
+    animate();
+  }
 
-    //循环渲染
-    function animate(){
-        render();
-        update();
-    }
+  //循环渲染
+  function animate(){
+    render();
+    update();
 
-    function update(){
+  }
+
+  function update(){
 //        updateSunFire();
 
-        if ( keyboard.pressed("z") ) {
-            // do something
-        }
-        controls.update();
-        stats.update();
+    if ( keyboard.pressed("z") ) {
+      // do something
+    }
+    controls.update();
+    stats.update();
+  }
+
+  function render() {
+    //更新天体的运动状态
+    updatePlanetsMove();
+
+    requestAnimationFrame(animate);
+    renderer.render( scene, camera );
+
+    if (keyboard.pressed('p')){
+      shot()
+
+      console.log(11111111)
     }
 
-    function render() {
-        //更新天体的运动状态
-        updatePlanetsMove();
+  }
+  function debugBase64(base64URL){
+    let win = window.open();
+    win.document.write('<iframe src="' + base64URL  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+  }
 
-        requestAnimationFrame(animate);
-        renderer.render( scene, camera );
-    }
+  function shot(){
+    var image = new Image();
+    renderer.render(scene, camera);//此处renderer为three.js里的渲染器，scene为场景 camera为相机
+
+    let imgData = renderer.domElement.toDataURL("image/jpeg");//这里可以选择png格式jpeg格式
+    image.src = imgData;
+    document.body.appendChild(image);//这样就可以查看截出来的图片了
+    debugBase64(imgData)
+
+  }
+
+  function beforeScreen() {
+    // renderer = new THREE.WebGLRenderer({
+    //   antialias: true,
+    //   alpha: true,
+    //   preserveDrawingBuffer: true
+    // })
+    let canvas = renderer.domElement
+    renderer.render(scene, camera)
+    var imgUri = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    window.location.href = imgUri // 下载图片
+  }
 
 </script>
 
